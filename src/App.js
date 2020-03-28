@@ -18,7 +18,7 @@ class App extends Component {
             <Route path='/project/:id' component={ProjectDetail} />
             <Route exact path='/signin' component={SignIn} />
             <Route exact path='/signup' component={SignUp} />
-            <Route exact path='/create-project' component={ProjectCreate} />
+            <Route exact path='/projects/create' component={ProjectCreate} />
           </Switch>
         </div>
       </Router>
