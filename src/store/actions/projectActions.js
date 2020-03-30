@@ -10,9 +10,10 @@ export const createProject = (project) => {
             createdAt: new Date()
         }).then(() => {
             dispatch({
-                type: 'CREATE_PROJECT_SUCCESS', project})
+                type: 'CREATE_PROJECT_SUCCESS', project
+            })
         }).catch((err) => {
-            dispatch({ type: 'CREATE_PROJECT_ERROR', err});
+            dispatch({ type: 'CREATE_PROJECT_ERROR', err });
         });
     }
 }
