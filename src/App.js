@@ -6,6 +6,7 @@ import ProjectDetail from './components/projects/ProjectDetail';
 import SignIn from './components/auth/SignIn';
 import SignUp from './components/auth/SignUp';
 import ProjectCreate from './components/projects/ProjectCreate';
+import NotFound from './components/layout/NotFound';
 
 class App extends Component {
   render() {
@@ -16,9 +17,10 @@ class App extends Component {
           <Switch>
             <Route exact path='/' component={Dashboard} />
             <Route path='/project/:id' component={ProjectDetail} />
-            <Route exact path='/signin' component={SignIn} />
-            <Route exact path='/signup' component={SignUp} />
-            <Route exact path='/projects/create' component={ProjectCreate} />
+            <Route path='/signin' component={SignIn} />
+            <Route path='/signup' component={SignUp} />
+            <Route path='/projects/create' component={ProjectCreate} />
+            <Route path="*" component={NotFound} />
           </Switch>
         </div>
       </Router>
