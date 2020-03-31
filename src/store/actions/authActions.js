@@ -14,6 +14,30 @@ export const signIn = (credentials) => {
     }
 }
 
+export const googleSignIn = () => {
+    return (dispatch, getState, { getFirebase, getFirestore }) => {
+        const firebase = getFirebase();
+        const firestore = getFirestore();
+        const provider = new firebase.auth.GoogleAuthProvider();
+
+        firebase.auth().signInWithPopup(provider)
+        .then((resp) => {
+            return firestore.collection('users').doc(resp.user.uid).set({
+                firstName: resp.user.displayName,
+                lastName: '',
+                initials: resp.user.displayName[0],
+                photoURL:  resp.user.photoURL
+            }).then(() => {
+                dispatch({ type: 'GOOGLE_SIGNIN_SUCCESS' })
+            })
+            .catch(err => {
+                dispatch({ type: 'GOOGLE_SIGNIN_ERROR', err })
+            });
+        })
+        
+    }
+}
+
 export const signOut = () => {
     return (dispatch, getState, { getFirebase }) => {
         const firebase = getFirebase();

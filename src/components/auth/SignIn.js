@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-import { signIn } from '../../store/actions/authActions'
+import { signIn, googleSignIn } from '../../store/actions/authActions'
 import { Redirect } from 'react-router-dom'
 
 export class SignIn extends Component {
@@ -19,6 +19,10 @@ export class SignIn extends Component {
     handleSubmit = e => {
         e.preventDefault();
         this.props.signIn(this.state)
+    }
+
+    socialLoginGoogle = () => {
+        this.props.googleSignIn();
     }
 
     render() {
@@ -46,7 +50,16 @@ export class SignIn extends Component {
                         </div>
                     </div>
 
+                    <div className="input-field">
+                        <button onClick={() => this.socialLoginGoogle()} className="google btn"><i className="fa fa-google fa-fw">
+                            </i> Entrar con Google+
+                        </button>
+                    </div>
+
+
                 </form>
+
+
             </div>
         )
     }
@@ -61,7 +74,8 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
     return {
-        signIn: (creds) => dispatch(signIn(creds))
+        signIn: (creds) => dispatch(signIn(creds)),
+        googleSignIn: () => dispatch(googleSignIn())
     }
 }
 
