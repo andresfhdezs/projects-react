@@ -4,7 +4,7 @@ import { connect } from 'react-redux'
 import { signOut } from '../../store/actions/authActions'
 
 const SignetInLinks = (props) => {
-    console.log(props)
+    // console.log(props)
     const icono = props.profile.photoURL ? <NavLink to="/" className="btn btn-floating pink lighten-1"> <img src={props.profile.photoURL} alt={props.profile.initials} width="40px" height="40px" /></NavLink> : <NavLink to="/" className="btn btn-floating pink lighten-1">{ props.profile.initials }</NavLink>;
     
     return (

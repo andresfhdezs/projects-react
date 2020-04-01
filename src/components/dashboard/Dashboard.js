@@ -36,8 +36,15 @@ const mapStateToProps = (state) => {
 
 export default compose(
     connect(mapStateToProps),
-    firestoreConnect([
-        { collection: 'projects', orderBy: ['createdAt', 'desc'] },
-        { collection: 'notifications', limit: 3, orderBy: ['time', 'desc'] }
-    ])
+    firestoreConnect((props) => {
+        // return props.auth.uid ? props.auth.uid : null
+        if (!props.auth.uid) return []
+        return [
+            {
+                collection: 'projects',
+                where: [['authorId', '==', props.auth.uid]],
+            },
+            { collection: 'notifications', limit: 3, orderBy: ['time', 'desc'] }
+        ]
+    })
 )(Dashboard)
