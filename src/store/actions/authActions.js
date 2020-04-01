@@ -14,6 +14,45 @@ export const signIn = (credentials) => {
     }
 }
 
+var  confirmar = () => {};
+
+export const singInPhoneCode = (newUser) => {
+    return (dispatch, getState, { getFirebase, getFirestore }) => {
+        confirmar
+            .confirm(newUser.code)
+            .then(() => {
+                dispatch({ type: 'LOGIN_SUCCESS' });
+            })
+            .catch((err) => {
+                dispatch({ type: 'LOGIN_ERROR' }, err);
+            });
+    }
+}
+
+export const singInPhone = (newUser) => {
+    return (dispatch, getState, { getFirebase }) => {
+        const firebase = getFirebase();
+        const provider = new firebase.auth.RecaptchaVerifier(
+            "recaptcha-container",
+            {
+                size: "invisible",
+                callback: function (response) {
+                    firebase.auth().submitPhoneNumberAuth();
+                }
+            }
+        );
+        firebase.auth().signInWithPhoneNumber(newUser.phoneNumber, provider)
+            .then((resp) => {
+                confirmar = resp
+            }
+            )
+            .catch(function (error) {
+                console.log(error);
+            });
+    }
+
+}
+
 export const googleSignIn = () => {
     return (dispatch, getState, { getFirebase, getFirestore }) => {
         const firebase = getFirebase();
@@ -21,20 +60,20 @@ export const googleSignIn = () => {
         const provider = new firebase.auth.GoogleAuthProvider();
 
         firebase.auth().signInWithPopup(provider)
-        .then((resp) => {
-            return firestore.collection('users').doc(resp.user.uid).set({
-                firstName: resp.user.displayName,
-                lastName: '',
-                initials: resp.user.displayName[0],
-                photoURL:  resp.user.photoURL
-            }).then(() => {
-                dispatch({ type: 'GOOGLE_SIGNIN_SUCCESS' })
+            .then((resp) => {
+                return firestore.collection('users').doc(resp.user.uid).set({
+                    firstName: resp.user.displayName.split(" ", 1).toString(),
+                    lastName: '',
+                    initials: resp.user.displayName[0],
+                    photoURL: resp.user.photoURL
+                }).then(() => {
+                    dispatch({ type: 'GOOGLE_SIGNIN_SUCCESS' })
+                })
+                    .catch(err => {
+                        dispatch({ type: 'GOOGLE_SIGNIN_ERROR', err })
+                    });
             })
-            .catch(err => {
-                dispatch({ type: 'GOOGLE_SIGNIN_ERROR', err })
-            });
-        })
-        
+
     }
 }
 
@@ -60,6 +99,7 @@ export const signUp = (newUser) => {
             return firestore.collection('users').doc(resp.user.uid).set({
                 firstName: newUser.firstName,
                 lastName: newUser.lastName,
+                photoURL: '',
                 initials: newUser.firstName[0] + newUser.lastName[0]
             }).then(() => {
                 dispatch({ type: 'SIGNUP_SUCCESS' });

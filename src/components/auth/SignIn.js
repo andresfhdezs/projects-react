@@ -1,19 +1,32 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-import { signIn, googleSignIn } from '../../store/actions/authActions'
+import { signIn, googleSignIn, singInPhone, singInPhoneCode } from '../../store/actions/authActions'
 import { Redirect } from 'react-router-dom'
 
 export class SignIn extends Component {
 
     state = {
         email: '',
-        password: ''
+        password: '',
+        phoneNumber: '',
+        code: ''
     }
 
     handleChange = e => {
+        console.log(e.target.value)
         this.setState({
             [e.target.name]: e.target.value
         })
+    }
+
+    submitPhoneNumberAuthCode = e => {
+        e.preventDefault();
+        this.props.singInPhoneCode(this.state)
+    }
+
+    submitPhoneNumberAuth = e => {
+        e.preventDefault();
+        this.props.singInPhone(this.state)
     }
 
     handleSubmit = e => {
@@ -52,14 +65,29 @@ export class SignIn extends Component {
 
                     <div className="input-field">
                         <button onClick={() => this.socialLoginGoogle()} className="google btn"><i className="fa fa-google fa-fw">
-                            </i> Entrar con Google+
+                        </i> Entrar con Google+
                         </button>
                     </div>
 
 
                 </form>
 
+                <form onSubmit={this.submitPhoneNumberAuth} className="white">
+                    <label htmlFor="phoneNumber">Celular</label>
+                    <input type="text" name="phoneNumber" onChange={this.handleChange} />
+                    
+                    <button type="submit">SIGN IN WITH PHONE</button>
 
+                </form>
+                <form onSubmit={this.submitPhoneNumberAuthCode} className="white">
+                    <label htmlFor="code">Código</label>
+                    <input type="number" name="code" onChange={this.handleChange} />
+                    
+                    <button type="submit">SIGN IN WITH PHONE</button>
+
+                </form>
+
+                <div id="recaptcha-container"></div>
             </div>
         )
     }
@@ -75,7 +103,9 @@ const mapStateToProps = (state) => {
 const mapDispatchToProps = (dispatch) => {
     return {
         signIn: (creds) => dispatch(signIn(creds)),
-        googleSignIn: () => dispatch(googleSignIn())
+        googleSignIn: () => dispatch(googleSignIn()),
+        singInPhone: (creds) => dispatch(singInPhone(creds)),
+        singInPhoneCode: (creds) => dispatch(singInPhoneCode(creds))
     }
 }
 

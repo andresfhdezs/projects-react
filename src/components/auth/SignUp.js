@@ -8,6 +8,7 @@ export class SignUp extends Component {
     state = {
         firstName: '',
         lastName: '',
+        photoURL: '',
         email: '',
         password: ''
     }
