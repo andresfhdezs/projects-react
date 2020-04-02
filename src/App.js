@@ -7,6 +7,7 @@ import SignIn from './components/auth/SignIn';
 import SignUp from './components/auth/SignUp';
 import ProjectCreate from './components/projects/ProjectCreate';
 import NotFound from './components/layout/NotFound';
+import Profile from './components/user/profile';
 
 class App extends Component {
   render() {
@@ -20,6 +21,7 @@ class App extends Component {
             <Route path='/signin' component={SignIn} />
             <Route path='/signup' component={SignUp} />
             <Route path='/projects/create' component={ProjectCreate} />
+            <Route path='/profile' component={Profile} />
             <Route path="*" component={NotFound} />
           </Switch>
         </div>

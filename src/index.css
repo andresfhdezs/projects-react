@@ -37,3 +37,87 @@ input[type=email]:not(.browser-default):focus:not([readonly]) + label,
 input[type=password]:not(.browser-default):focus:not([readonly]) + label{
   color: #ec407a !important;
 }
+
+/* Tarjeta Perfil */
+
+#card {
+	width: 400px;
+	height: 300px;
+	position: relative;
+	margin: 10% auto;
+	border-radius: 8px;
+	box-shadow: 0px 2px 6px rgba(0, 0, 0, 0.2), 0px 2px 6px rgba(0, 0, 0, 0.4);
+	overflow: hidden;
+}
+
+#blur {
+	/* background: url(https://s3-us-west-2.amazonaws.com/s.cdpn.io/225748/MD_background.png) no-repeat center center fixed; */
+  background-color: #7e7e7e;
+  background-size: cover;
+	width: 430px;
+	height: 330px;
+	position: relative;
+	top: -15px;
+	left: -15px;
+	border-radius: 8px;
+	-webkit-filter: blur(8px);
+	-moz-filter: blur(8px);
+	filter: blur(8px);
+}
+
+#color {
+	background: rgba(255, 255, 255, .60);
+	width: 430px;
+	height: 330px;
+}
+
+#profile {
+	cursor: grabbing;
+	width: 400px;
+	height: 300px;
+	position: relative;
+	top: -330px;
+	border-radius: 8px;
+}
+
+.profile-photo {
+  background-color: #7e7e7e;
+	width: 100px;
+	height: 100px;
+	border-radius: 100px;
+	position: relative;
+	top: 20px;
+	display: block;
+	margin: 0 auto;
+	-webkit-filter: sepia(.25);
+	-moz-filter: sepia(.25);
+	filter: sepia(.25);
+}
+
+h1 {
+	color: rgba(38, 50, 56, 1);
+	font-family: 'Roboto Condensed', sans-serif;
+	font-size: 36px;
+	font-weight: 700;
+	text-align: center;
+	position: relative;
+}
+
+p {
+	color: rgba(38, 50, 56, .87);
+	font-family: 'Roboto Condensed', sans-serif;
+	font-size: 16px;
+	font-weight: 400;
+	text-align: center;
+	position: relative;
+}
+
+a {
+	color: rgba(255, 255, 255, 1);
+	transition: color 0.4s;
+	text-decoration: none;
+}
+a:hover {
+	color: rgba(255, 255, 255, .70);
+	transition: color 0.4s; 
+}

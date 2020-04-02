@@ -5,13 +5,13 @@ import { signOut } from '../../store/actions/authActions'
 
 const SignetInLinks = (props) => {
     // console.log(props)
-    const icono = props.profile.photoURL ? <NavLink to="/" className="btn btn-floating pink lighten-1"> <img src={props.profile.photoURL} alt={props.profile.initials} width="40px" height="40px" /></NavLink> : <NavLink to="/" className="btn btn-floating pink lighten-1">{ props.profile.initials }</NavLink>;
+    const image = props.profile.photoURL ? <img src={props.profile.photoURL} alt={props.profile.initials} width="40px" height="40px" /> : props.profile.initials;
     
     return (
         <ul className="right">
             <li> <NavLink to="/projects/create">Nuevo Projecto</NavLink> </li>
             <li><a href="#/" onClick={props.signOut}>Log Out</a></li>
-            <li>{icono}</li>
+            <NavLink to="/profile" className="btn btn-floating pink lighten-1"> {image} </NavLink>
         </ul>
     )
 }
