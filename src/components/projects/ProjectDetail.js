@@ -16,7 +16,7 @@ const ProjectDetail = props => {
         <div className="card z-depth-0">
           <div className="card-content">
             <span className="card-title">{project.title} </span>
-            <AutoLink project={project}></AutoLink>
+            <AutoLink project={project} />
           </div>
           <div className="card-action grey lighten-4 grey-text">
             <div>Por: {project.authorFirstName} {project.authorLastName}</div>

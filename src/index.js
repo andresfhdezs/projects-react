@@ -20,9 +20,6 @@ import firebase from "firebase/app";
 import { useSelector } from 'react-redux'
 import { isLoaded } from 'react-redux-firebase';
 
-
-
-
 const store = createStore(
   rootReducer,
   compose(
@@ -42,7 +39,7 @@ const profileSpecificProps = {
 const rrfProps = {
   firebase,
   config: fbConfig,
-  configProp: profileSpecificProps,
+  config: profileSpecificProps, // eslint-disable-line no-dupe-keys
   dispatch: store.dispatch,
   createFirestoreInstance
 };
