@@ -23,3 +23,10 @@ const mapDispatchToProps = (dispatch) => {
 }
 
 export default connect(null, mapDispatchToProps)(SignetInLinks)
+
+
+/* <div className="row">
+    <Tooltip text='Simple tooltip'>
+        <button>Hover me!</button>
+    </Tooltip>
+</div> */

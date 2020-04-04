@@ -4,17 +4,19 @@ import { firestoreConnect } from 'react-redux-firebase'
 import { compose } from 'redux'
 import { Redirect } from 'react-router-dom'
 import moment from 'moment'
+import AutoLink from '../helpers/AutoLink'
 
 const ProjectDetail = props => {
   const { project, auth } = props;
   if (!auth.uid) return <Redirect to='/signin' />
   if (project) {
+    // const content = autoLink(project.content);
     return (
       <div className="container section project-details">
         <div className="card z-depth-0">
           <div className="card-content">
-            <span className="card-title">{project.title}</span>
-            <p>{project.content}</p>
+            <span className="card-title">{project.title} </span>
+            <AutoLink project={project}></AutoLink>
           </div>
           <div className="card-action grey lighten-4 grey-text">
             <div>Por: {project.authorFirstName} {project.authorLastName}</div>
@@ -42,4 +44,4 @@ const mapStateToProps = (state, ownProps) => {
   }
 }
 
-export default compose(connect(mapStateToProps),firestoreConnect(['projects']))(ProjectDetail)
+export default compose(connect(mapStateToProps), firestoreConnect(['projects']))(ProjectDetail)

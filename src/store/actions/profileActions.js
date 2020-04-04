@@ -29,8 +29,8 @@ export const updateProfile = (updateUser) => {
 export const updateProfileEmail = (updateUser) => {
     return (dispatch, getState, { getFirebase, getFirestore }) => {
         const firebase = getFirebase();
-        const firestore = getFirestore();
-        const authorId = getState().firebase.auth.uid;
+        // const firestore = getFirestore();
+        // const authorId = getState().firebase.auth.uid;
         firebase.auth().currentUser.updateEmail(
             updateUser.email
         ).then(() => {

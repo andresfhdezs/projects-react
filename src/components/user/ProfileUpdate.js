@@ -1,4 +1,4 @@
-import React, { Component, useState } from 'react'
+import React, { Component } from 'react'
 import { connect } from 'react-redux'
 // import { Redirect } from 'react-router-dom'
 import { updateProfile, updateProfileEmail } from '../../store/actions/profileActions'
@@ -31,7 +31,7 @@ class ProfileUpdate extends Component {
     }
     
     render() {
-        const { auth, profile, authError } = this.props;
+        const { authError } = this.props;
         
         // if (auth.uid) return <Redirect to='/profile' />
         return (
@@ -47,6 +47,10 @@ class ProfileUpdate extends Component {
                     <div className="input-field">
                         <label htmlFor="lastName">Apellido</label>
                         <input type="text" name="lastName" onChange={this.handleChange} />
+                    </div>
+
+                    <div className="input-field">
+                        <input type="file" name="photoURL" onChange={this.handleChange} />
                     </div>
 
                     <div className="input-field">
@@ -79,8 +83,8 @@ class ProfileUpdate extends Component {
 
 const mapStateToProps = (state) => {
     return {
-        auth: state.firebase.auth,
-        profile: state.firebase.profile,
+        // auth: state.firebase.auth,
+        // profile: state.firebase.profile,
         authError: state.auth.authError
     }
 }
