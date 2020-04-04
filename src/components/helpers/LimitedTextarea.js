@@ -1,4 +1,4 @@
-const LimitedTextarea = ({ rows, cols, value, limit }) => {
+export const LimitedTextarea = ({ rows, cols, value, limit }) => {
     const [content, setContent] = React.useState(value);
 
     const setFormattedContent = text => {
@@ -24,4 +24,19 @@ const LimitedTextarea = ({ rows, cols, value, limit }) => {
     );
 }
 
-export default LimitedTextarea
+/* <LimitedTextarea limit={32} value='Hello!' /> */
+
+export const TextArea = ({ callback, cols = 20, rows = 2, disabled = false, readOnly = false, placeholder = '' }) => {
+    return (
+        <textarea
+            cols={cols}
+            rows={rows}
+            disabled={disabled}
+            readOnly={readOnly}
+            placeholder={placeholder}
+            onChange={({ target: { value } }) => callback(value)}
+        />
+    );
+}
+
+/* <TextArea placeholder='Insert some text here...' callback={(val) => console.log(val)}/> */
