@@ -9,9 +9,9 @@ const Navbar = (props) => {
 
     const links = auth.uid ? <SignetInLinks profile={profile} /> : <SignetOutLinks />;
     return (
-        <nav className="nav-wrapper grey darken-3">
+        <nav className="nav-wrapper color-principal">
             <div className="container">
-                <Link to="/" className="brand-logo left"> A Express</Link>
+                <Link to="/" className="brand-logo left"><img className="img-brand"alt="" src="img/nav/logo.png"></img></Link>
                 {links}
             </div>
         </nav>

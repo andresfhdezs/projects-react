@@ -1,4 +1,5 @@
 import React, { Fragment } from 'react'
+import RenderHTML from 'react-render-html'
 
 const AutoLink = ( props) => {
     const text = props.project.content;
@@ -13,7 +14,7 @@ const AutoLink = ( props) => {
                         <a href={url.startsWith("http") ? url : `http://${url}`} target="_blank" rel="noopener noreferrer" key={props.project.authorId} >{url}</a>
                     );
                 }
-                return word;
+                return RenderHTML(word);
             })}
         </Fragment>
     );

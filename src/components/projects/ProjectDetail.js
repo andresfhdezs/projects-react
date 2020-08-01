@@ -5,8 +5,10 @@ import { compose } from 'redux'
 import { Redirect } from 'react-router-dom'
 import moment from 'moment'
 import AutoLink from '../helpers/AutoLink'
+import FecebookReactions from '../helpers/FecebookReactions'
 
 const ProjectDetail = props => {
+  
   const { project, auth } = props;
   if (!auth.uid) return <Redirect to='/signin' />
   if (project) {
@@ -23,6 +25,7 @@ const ProjectDetail = props => {
             <div>{moment(project.createdAt.toDate()).calendar()}</div>
           </div>
         </div>
+        <FecebookReactions project={project}></FecebookReactions>
       </div>
     )
   } else {

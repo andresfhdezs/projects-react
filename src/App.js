@@ -8,6 +8,8 @@ import SignUp from './components/auth/SignUp';
 import ProjectCreate from './components/projects/ProjectCreate';
 import NotFound from './components/layout/NotFound';
 import Profile from './components/user/profile';
+import { Home } from './components/landing/Home';
+import Footer from './components/layout/Footer';
 
 class App extends Component {
   render() {
@@ -16,7 +18,8 @@ class App extends Component {
         <div className="App">
           <Navbar></Navbar>
           <Switch>
-            <Route exact path='/' component={Dashboard} />
+            <Route exact path='/' component={Home} />
+            <Route path='/dashboard' component={Dashboard} />
             <Route path='/project/:id' component={ProjectDetail} />
             <Route path='/signin' component={SignIn} />
             <Route path='/signup' component={SignUp} />
@@ -24,6 +27,7 @@ class App extends Component {
             <Route path='/profile' component={Profile} />
             <Route path="*" component={NotFound} />
           </Switch>
+          <Footer></Footer>
         </div>
       </Router>
     );
